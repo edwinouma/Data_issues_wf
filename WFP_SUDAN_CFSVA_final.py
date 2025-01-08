@@ -5,12 +5,23 @@ import plotly.subplots as sp
 import plotly.graph_objects as go
 import plotly.express as px
 
-st.title("Upload Your Dataset")
-uploaded_file = st.file_uploader("Choose a file", type=["csv"])
+# Title
+st.title("Upload and Analyze Your Dataset")
+
+# File Uploader
+uploaded_file = st.file_uploader("Choose a CSV file to upload", type=["csv"])
+
+# Initialize the DataFrame variable
+df = None
 
 if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file)
-    st.write(df)
+    try:
+        df = pd.read_csv(uploaded_file)
+        st.success("File uploaded successfully!")
+        st.write("Data Preview:")
+        st.write(df.head())
+    except Exception as e:
+        st.error(f"An error occurred while reading the file: {e}")
 
 df = df.rename(columns={"QState":"QState_orig",
                         "Q2_7":"hh_size",
