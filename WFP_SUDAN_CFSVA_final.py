@@ -438,6 +438,7 @@ st.markdown("""
 import base64
 
 # Add tabs for navigation
+st.write("Initializing tabs...")
 tab1, tab2, tab3 = st.tabs(["Progress Summary", "Dashboard", "Data Issues"])
 
 # Tab 2: Dashboard
