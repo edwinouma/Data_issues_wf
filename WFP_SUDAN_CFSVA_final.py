@@ -62,6 +62,11 @@ df = df.rename(columns={"QState":"QState_orig",
 
 })
 
+except AttributeError:
+        st.error("Failed to rename columns. Ensure the uploaded file is valid.")
+    except Exception as e:
+        st.error(f"An error occurred: {e}")
+
 state_mapping = {
     1:"North Darfur",
     2:"South Darfur",
