@@ -5,16 +5,21 @@ import plotly.subplots as sp
 import plotly.graph_objects as go
 import plotly.express as px
 
-# Set working directory and load the dataset
-# os.chdir('C:/WORK/PERSONAL/EDWIN/Personal/WFP-SUDAN-DATA-VERIFICATION/Dataset')
-CFSVA_Dec_2024 = pd.read_csv('CFSA_Dec_2024_08Jan2024.csv')
-df = CFSVA_Dec_2024
+st.title("Upload and Analyze Your Dataset")
 
-# Load your data (replace with your data loading logic)
-# Example: df = pd.read_csv("your_data.csv")
+# File Uploader
+uploaded_file = st.file_uploader("Choose a CSV file to upload", type=["csv"])
 
-# os.chdir('C:/WORK/PERSONAL/EDWIN/Personal/WFP-SUDAN-DATA-VERIFICATION/Dataset')
-# CFSVA_Dec_2024 = pd.read_excel('CFSA_Dec_2024_08Jan2024.xlsx')
+# Initialize DataFrame variable
+df = None
+
+if uploaded_file is not None:
+    try:
+        # Read the uploaded CSV file
+        df = pd.read_csv(uploaded_file)
+        st.success("File uploaded successfully!")
+        st.write("Data Preview:")
+        st.write(df.head())
 
 df = df.rename(columns={"QState":"QState_orig",
                         "Q2_7":"hh_size",
@@ -1509,6 +1514,9 @@ with tab1:
     except Exception as e:
         st.error(f"An error occurred while creating the progress table: {e}")
 
-
+ except Exception as e:
+        st.error(f"An error occurred while processing the file: {e}")
+else:
+    st.info("Please upload a dataset to proceed.")
 
 
