@@ -437,49 +437,6 @@ st.markdown("""
 
 import base64
 
-# Function to load and encode the local logo file
-def load_logo(logo_path):
-    with open(logo_path, "rb") as logo_file:
-        encoded_logo = base64.b64encode(logo_file.read()).decode()
-    return encoded_logo
-
-# Path to your local logo
-logo_path = "logo/wfp_logo.jpg"
-
-# Load and encode the logo
-encoded_logo = load_logo(logo_path)
-
-# Add a logo and styled header with background color
-st.markdown(f"""
-    <style>
-        .header {{
-            background-color: #f0f8ff; /* Light blue background */
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-        }}
-        .header h1 {{
-            text-align: center;
-            color: #0047ab;
-            font-family: Arial, sans-serif;
-            font-size: 32px;
-            margin-bottom: 10px;
-        }}
-        .header img {{
-            display: block;
-            margin-left: auto;
-            margin-right: auto;
-            width: 120px; /* Adjust logo size */
-        }}
-    </style>
-    <div class="header">
-        <img src="data:image/jpg;base64,{encoded_logo}" alt="WFP Logo">
-        <h1>Comprehensive Food Security & Vulnerability Analysis (CFSVA) Survey - WFP Sudan</h1>
-    </div>
-""", unsafe_allow_html=True)
-
-
-
 # Add tabs for navigation
 tab1, tab2, tab3 = st.tabs(["Progress Summary", "Dashboard", "Data Issues"])
 
