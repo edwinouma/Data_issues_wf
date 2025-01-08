@@ -5,16 +5,12 @@ import plotly.subplots as sp
 import plotly.graph_objects as go
 import plotly.express as px
 
-# Set working directory and load the dataset
-# os.chdir('C:/WORK/PERSONAL/EDWIN/Personal/WFP-SUDAN-DATA-VERIFICATION/Dataset')
-CFSVA_Dec_2024 = pd.read_csv('CFSA_Dec_2024_08Jan2024.csv')
-df = CFSVA_Dec_2024
+st.title("Upload Your Dataset")
+uploaded_file = st.file_uploader("Choose a file", type=["csv"])
 
-# Load your data (replace with your data loading logic)
-# Example: df = pd.read_csv("your_data.csv")
-
-# os.chdir('C:/WORK/PERSONAL/EDWIN/Personal/WFP-SUDAN-DATA-VERIFICATION/Dataset')
-# CFSVA_Dec_2024 = pd.read_excel('CFSA_Dec_2024_08Jan2024.xlsx')
+if uploaded_file is not None:
+    df = pd.read_csv(uploaded_file)
+    st.write(df)
 
 df = df.rename(columns={"QState":"QState_orig",
                         "Q2_7":"hh_size",
